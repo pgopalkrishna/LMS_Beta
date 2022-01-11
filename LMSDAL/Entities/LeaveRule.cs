@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Entities
 {
     public class LeaveRule
     {
         public int Id { get; set; }
+        [Required]
         public int LeaveTypeId { get; set; }//FK
+        [Required]
         public double NoOfLeaves { get; set; }
+        [Required]
         public int LeaveValidity { get; set; }//Enum
         public bool IsCarryForward { get; set; }
         public int CarryForwardCap { get; set; }
