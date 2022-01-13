@@ -69,6 +69,9 @@ namespace LMSDAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DesignationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -84,6 +87,10 @@ namespace LMSDAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DesignationId");
+
+                    b.HasIndex("OrgnizationId");
 
                     b.ToTable("Designations");
                 });
@@ -112,6 +119,9 @@ namespace LMSDAL.Migrations
 
                     b.Property<string>("EmpCode")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -167,6 +177,8 @@ namespace LMSDAL.Migrations
 
                     b.HasIndex("DesignationId");
 
+                    b.HasIndex("EmployeeId");
+
                     b.HasIndex("OrgnizationId");
 
                     b.HasIndex("WorkLocationId");
@@ -196,11 +208,20 @@ namespace LMSDAL.Migrations
                     b.Property<bool>("LastDayHalf")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("LeaveApplicationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LeaveReason")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("LeaveTypeId")
+                        .HasColumnType("int");
+
                     b.Property<double>("NoOfLeaves")
                         .HasColumnType("float");
+
+                    b.Property<int?>("RptManagerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -216,6 +237,10 @@ namespace LMSDAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LeaveApplicationId");
+
+                    b.HasIndex("RptManagerId");
 
                     b.ToTable("LeaveApplications");
                 });
@@ -312,8 +337,11 @@ namespace LMSDAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LeaveTypeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -330,6 +358,8 @@ namespace LMSDAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LeaveTypeId");
 
                     b.HasIndex("OrgnizationId");
 
@@ -363,6 +393,9 @@ namespace LMSDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrganizationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("OrgnizationName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -375,6 +408,8 @@ namespace LMSDAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("Organizations");
                 });
@@ -415,13 +450,35 @@ namespace LMSDAL.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("WorkLocationId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OrgnizationId");
+
+                    b.HasIndex("WorkLocationId");
 
                     b.ToTable("WorkLocations");
                 });
 
             modelBuilder.Entity("Entities.CompanyHoliday", b =>
                 {
+                    b.HasOne("Entities.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrgnizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("Entities.Designation", b =>
+                {
+                    b.HasOne("Entities.Designation", null)
+                        .WithMany("Designations")
+                        .HasForeignKey("DesignationId");
+
                     b.HasOne("Entities.Organization", "Organization")
                         .WithMany()
                         .HasForeignKey("OrgnizationId")
@@ -438,6 +495,10 @@ namespace LMSDAL.Migrations
                         .HasForeignKey("DesignationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Entities.Employee", null)
+                        .WithMany("employee")
+                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("Entities.Organization", "Organization")
                         .WithMany()
@@ -456,6 +517,19 @@ namespace LMSDAL.Migrations
                     b.Navigation("Organization");
 
                     b.Navigation("workLocation");
+                });
+
+            modelBuilder.Entity("Entities.LeaveApplication", b =>
+                {
+                    b.HasOne("Entities.LeaveApplication", null)
+                        .WithMany("LeaveApplications")
+                        .HasForeignKey("LeaveApplicationId");
+
+                    b.HasOne("Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("RptManagerId");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Entities.LeaveRule", b =>
@@ -482,6 +556,10 @@ namespace LMSDAL.Migrations
 
             modelBuilder.Entity("Entities.LeaveType", b =>
                 {
+                    b.HasOne("Entities.LeaveType", null)
+                        .WithMany("LeaveTypes")
+                        .HasForeignKey("LeaveTypeId");
+
                     b.HasOne("Entities.Organization", "Organization")
                         .WithMany()
                         .HasForeignKey("OrgnizationId")
@@ -489,6 +567,58 @@ namespace LMSDAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("Entities.Organization", b =>
+                {
+                    b.HasOne("Entities.Organization", null)
+                        .WithMany("organization")
+                        .HasForeignKey("OrganizationId");
+                });
+
+            modelBuilder.Entity("Entities.WorkLocation", b =>
+                {
+                    b.HasOne("Entities.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrgnizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.WorkLocation", null)
+                        .WithMany("WorkLocations")
+                        .HasForeignKey("WorkLocationId");
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("Entities.Designation", b =>
+                {
+                    b.Navigation("Designations");
+                });
+
+            modelBuilder.Entity("Entities.Employee", b =>
+                {
+                    b.Navigation("employee");
+                });
+
+            modelBuilder.Entity("Entities.LeaveApplication", b =>
+                {
+                    b.Navigation("LeaveApplications");
+                });
+
+            modelBuilder.Entity("Entities.LeaveType", b =>
+                {
+                    b.Navigation("LeaveTypes");
+                });
+
+            modelBuilder.Entity("Entities.Organization", b =>
+                {
+                    b.Navigation("organization");
+                });
+
+            modelBuilder.Entity("Entities.WorkLocation", b =>
+                {
+                    b.Navigation("WorkLocations");
                 });
 #pragma warning restore 612, 618
         }

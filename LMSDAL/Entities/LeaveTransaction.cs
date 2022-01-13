@@ -22,6 +22,6 @@ namespace Entities
         public string RejectedBy { get; set; }
         [ForeignKey("LeaveApplicationId")]
         //[InverseProperty("LeaveApplicationInfo")]
-        public LeaveApplication LeaveApplication { get; set; }
+        public virtual LeaveApplication  LeaveApplication { get; set; }
     }
 }

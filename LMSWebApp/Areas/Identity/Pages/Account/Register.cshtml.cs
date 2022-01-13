@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using LMSService.Interfaces;
+using Entities;
 
 namespace LMSWebApp.Areas.Identity.Pages.Account
 {
@@ -24,17 +26,20 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IEmployeeRepository _repoEpmloyee;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IEmployeeRepository repoEpmloyee)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _repoEpmloyee = repoEpmloyee;
         }
 
         [BindProperty]
@@ -93,7 +98,31 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    //_repoEpmloyee
+                    var Emp = new Employee { 
+                    //Id=0,
+                    UserId=user.Id,
+                    FirstName=Input.FirstName,
+                    LastName=Input.LastName,
+                    DesignationId=6,
+                    Dob=DateTime.UtcNow,
+                    JoiningDate=DateTime.UtcNow,
+                    Gender=1,
+                    emergencyContactNo="0000000000",
+                    OrgnizationId=1,
+                    WorkLocationId=2,
+                    MaritalSatus=1,
 
+                    CreatedDate=DateTime.UtcNow,
+                    UpdatedDate=DateTime.UtcNow
+                    
+                    };
+                    await _repoEpmloyee.Add(Emp);
+                   var empCount= await _repoEpmloyee.SaveChanges();
+                    if (empCount > 0)
+                    {
+                        _logger.LogInformation("Registered User added as employee.");
+                    }
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

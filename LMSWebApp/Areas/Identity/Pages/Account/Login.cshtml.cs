@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
+using LMSService.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace LMSWebApp.Areas.Identity.Pages.Account
 {
@@ -21,14 +24,18 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IEmployeeRepository _repoEmployee;
+        // private readonly 
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, 
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IEmployeeRepository repoEmployee)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _repoEmployee = repoEmployee;
         }
 
         [BindProperty]
@@ -80,7 +87,7 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -89,6 +96,17 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    
+                    //if (userId != null)
+                    //{
+                    //    var CurrentOrg = _repoEmployee.GetCurrentOrg(userId);
+                    //    HttpContext.Session.SetInt32("OrgId", Convert.ToInt32(CurrentOrg[0].ToString()));
+                    //    HttpContext.Session.SetString("OrgName", CurrentOrg[1].ToString());
+                    //}
+
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace Entities
         [Required]
         [MaxLength(80)]
         public string Name { get; set; }
-        public string IsActive { get; set; }
+        [DefaultValue(true)]
+        public bool IsActive { get; set; }
         [Required]
         public int OrgnizationId { get; set; }//FK
         public DateTime CreatedDate { get; set; }
@@ -23,6 +25,7 @@ namespace Entities
         public string UpdatedBy { get; set; }
         [ForeignKey("OrgnizationId")]
         //[InverseProperty("OrganizationInfo")]
-        public Organization Organization { get; set; }
+        public virtual Organization Organization { get; set; }
+        public virtual ICollection<LeaveType> LeaveTypes { get; set; }
     }
 }

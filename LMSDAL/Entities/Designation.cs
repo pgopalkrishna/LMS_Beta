@@ -21,9 +21,9 @@ namespace Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        //[ForeignKey("OrgnizationId")]
-        ////[InverseProperty("OrganizationInfo")]
-        //public Organization Organization { get; set; }
-
+        [ForeignKey("OrgnizationId")]
+        //[InverseProperty("OrganizationInfo")]
+        public virtual Organization Organization { get; set; }
+        public virtual ICollection<Designation> Designations { get; set; }
     }
 }

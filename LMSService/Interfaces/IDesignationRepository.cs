@@ -1,4 +1,5 @@
 ﻿using Entities;
+using LMSService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface IDesignationRepository : IRepository<Designation>
+    public interface IDesignationRepository : IRepository<Designation>
     {
+        Task<IEnumerable<vwDesignation>> GetDesignationList();
     }
 }

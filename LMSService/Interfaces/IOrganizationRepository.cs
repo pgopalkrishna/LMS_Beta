@@ -1,4 +1,5 @@
 ﻿using Entities;
+using LMSService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface IOrganizationRepository:IRepository<Organization>
+    public interface IOrganizationRepository:IRepository<Organization>
     {
+        Task<IEnumerable<vwOrganization>> GetOrganizations();
     }
 }

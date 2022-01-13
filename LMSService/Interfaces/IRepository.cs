@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T> : IDisposable where T : class
     {
         Task Add(T obj);
         void Update(T obj);

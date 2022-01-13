@@ -1,4 +1,6 @@
 using LMSDAL;
+using LMSService.Services;
+using LMSService.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,11 +27,26 @@ namespace LMSWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddRazorPages();
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("LMSIdentityContextConnection")));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            services.AddTransient(typeof(ILeaveTypeRepository), typeof(LeaveTypeRepository));
+            services.AddTransient(typeof(IEmployeeRepository), typeof(EmployeeRepository));
+
+            services.AddTransient(typeof(IWorkLocationRepository), typeof(WorkLocationRepository));
+            services.AddTransient(typeof(IDesignationRepository), typeof(DesignationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

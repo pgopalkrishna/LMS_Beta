@@ -25,6 +25,6 @@ namespace Entities
         public string UpdatedBy { get; set; }
         [ForeignKey("OrgnizationId")]
         //[InverseProperty("OrganizationInfo")]
-        public Organization Organization { get; set; }
+        public virtual Organization Organization { get; set; }
     }
 }

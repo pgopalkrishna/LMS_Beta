@@ -25,7 +25,7 @@ namespace Entities
         public string UpdatedBy { get; set; }
         [ForeignKey("LeaveTypeId")]
         //[InverseProperty("LeaveTypeInfo")]
-        public LeaveType LeaveType { get; set; }
+        public virtual LeaveType  LeaveType { get; set; }
 
     }
 }

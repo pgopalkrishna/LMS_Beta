@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface ILeaveApplicationRepository : IRepository<LeaveApplication>
+    public interface ILeaveApplicationRepository : IRepository<LeaveApplication>
     {
     }
 }

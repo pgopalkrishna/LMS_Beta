@@ -45,17 +45,17 @@ namespace Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-
+        public virtual ICollection<Employee> employee { get; set; }
         [ForeignKey("DesignationId")]
         //[InverseProperty("DesignationInfo")]
-        public Designation Designation { get; set; }
+        public virtual Designation Designation { get; set; }
 
         [ForeignKey("WorkLocationId")]
         //[InverseProperty("WorkLocationInfo")]
-        public WorkLocation workLocation { get; set; }
+        public virtual WorkLocation workLocation { get; set; }
         [ForeignKey("OrgnizationId")]
         //[InverseProperty("OrganizationInfo")]
-        public Organization Organization { get; set; }
+        public virtual Organization Organization { get; set; }
 
 
 

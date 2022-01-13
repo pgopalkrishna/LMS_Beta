@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface ILeaveRuleRepository : IRepository<LeaveRule>
+    public interface ILeaveRuleRepository : IRepository<LeaveRule>
     {
     }
 }

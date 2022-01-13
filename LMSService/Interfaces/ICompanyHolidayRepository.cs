@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LMSService.Interfaces
 {
-    interface ICompanyHolidayRepository : IRepository<CompanyHoliday>
+    public interface ICompanyHolidayRepository : IRepository<CompanyHoliday>
     {
     }
 }

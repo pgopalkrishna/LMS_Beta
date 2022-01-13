@@ -26,5 +26,6 @@ namespace Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public virtual ICollection<Organization> organization { get; set; }
     }
 }
