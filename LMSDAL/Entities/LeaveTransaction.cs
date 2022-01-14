@@ -20,8 +20,12 @@ namespace Entities
         public DateTime RejectionDate { get; set; }
         public string AprrovedBy { get; set; }
         public string RejectedBy { get; set; }
+        public int OrgnanizationId { get; set; }
         [ForeignKey("LeaveApplicationId")]
         //[InverseProperty("LeaveApplicationInfo")]
         public virtual LeaveApplication  LeaveApplication { get; set; }
+        [ForeignKey("OrgnanizationId")]
+        //[InverseProperty("LeaveApplicationInfo")]
+        public virtual Organization Orgnanization { get; set; }
     }
 }

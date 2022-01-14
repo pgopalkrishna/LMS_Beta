@@ -12,7 +12,8 @@ namespace Entities
     {
         public int Id { get; set; }
         [Required]
-        public string UserId { get; set; }//FK
+        public int EmployeeId { get; set; }//FK
+        [Required]
         public int LeaveTypeId { get; set; }//FK
         [Required]
         public DateTime StartDate { get; set; }
@@ -28,12 +29,12 @@ namespace Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        //[ForeignKey("EmployeeId")]
-        ////[InverseProperty("EmployeeInfo")]
-        //public virtual ICollection<Employee>  Employee { get; set; }
-        [ForeignKey("RptManagerId")]
+        [ForeignKey("EmployeeId")]
         //[InverseProperty("EmployeeInfo")]
         public virtual Employee Employee { get; set; }
+        [ForeignKey("LeaveTypeId")]
+        //[InverseProperty("EmployeeInfo")]
+        public virtual LeaveType LeaveType { get; set; }
         public virtual ICollection<LeaveApplication> LeaveApplications { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace Entities
         public int LeaveValidity { get; set; }//Enum
         public bool IsCarryForward { get; set; }
         public int CarryForwardCap { get; set; }
+        public int OrganizationId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
@@ -26,6 +27,9 @@ namespace Entities
         [ForeignKey("LeaveTypeId")]
         //[InverseProperty("LeaveTypeInfo")]
         public virtual LeaveType  LeaveType { get; set; }
+        [ForeignKey("OrganizationId")]
+        //[InverseProperty("LeaveTypeInfo")]
+        public virtual Organization Organizations { get; set; }
 
     }
 }
