@@ -20,11 +20,24 @@ namespace Entities
         [MaxLength(50)]
         public string LastName { get; set; }
         [Required]
+        [EmailAddress]
+        public string EmailId { get; set; }
+        [Required]
         public int DesignationId { get; set; }//FK
         [Required]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Dob { get; set; }
         [Required]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime JoiningDate { get; set; }
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+
         public DateTime LastWorkingDate { get; set; }
         public int WorkLocationId { get; set; }//FK
         [Required]
@@ -33,7 +46,7 @@ namespace Entities
         public string Address { get; set; }
         [MaxLength(20)]
         [MinLength(10)]
-        public string emergencyContactNo { get; set; }
+        public string EmergencyContactNo { get; set; }
 
         public string Skillset { get; set; }
 

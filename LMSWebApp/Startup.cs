@@ -38,7 +38,7 @@ namespace LMSWebApp
             services.AddTransient(typeof(IWorkLocationRepository), typeof(WorkLocationRepository));
             services.AddTransient(typeof(IDesignationRepository), typeof(DesignationRepository));
             services.AddTransient(typeof(ILeaveRuleRepository), typeof(LeaveRuleRepository));
-            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            services.AddTransient(typeof(IEmployeeRepository), typeof(EmployeeRepository));
             //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
             //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
             //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));

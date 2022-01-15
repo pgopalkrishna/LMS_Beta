@@ -1,0 +1,160 @@
+﻿@model Entities.Employee
+@using LMSService.Enums;
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             @*@Html.HiddenFor(model=>model.Id)
+             @Html.HiddenFor(model=>model.UserId)
+             @Html.HiddenFor(model=>model.EmpCode)
+            @Html.HiddenFor(model=>model.OrgnizationId)
+            @Html.HiddenFor(model=>model.CreatedDate)
+            @Html.HiddenFor(model=>model.UpdatedDate)
+            @Html.HiddenFor(model=>model.CreatedBy)
+            @Html.HiddenFor(model=>model.UpdatedBy)*@
+            @*<div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>*@
+           @* <div class="form-group">
+                <label asp-for="EmpCode" class="control-label"></label>
+                <input asp-for="EmpCode" class="form-control" />
+                <span asp-validation-for="EmpCode" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailId" class="control-label"></label>
+                <input asp-for="EmailId" class="form-control" />
+                <span asp-validation-for="EmailId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesignationId" class="control-label"></label>
+                @*<input asp-for="DesignationId" class="form-control" />*@
+                 @Html.DropDownListFor(m=>m.DesignationId, new SelectList(ViewBag.designations, "DesignationId", "Name"), "Select Leave Type",new { @class="form-control"})
+                <span asp-validation-for="DesignationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dob" class="control-label"></label>
+                <input asp-for="Dob" class="form-control" />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JoiningDate" class="control-label"></label>
+                <input asp-for="JoiningDate" class="form-control" />
+                <span asp-validation-for="JoiningDate" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="LastWorkingDate" class="control-label"></label>
+                <input asp-for="LastWorkingDate" class="form-control" />
+                <span asp-validation-for="LastWorkingDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="WorkLocationId" class="control-label"></label>
+                @*<input asp-for="WorkLocationId" class="form-control" />*@
+                 @Html.DropDownListFor(m=>m.WorkLocationId, new SelectList(ViewBag.workLocations, "WorkLocationId", "Name"), "Select Leave Type",new { @class="form-control"})
+                <span asp-validation-for="WorkLocationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                @*<input asp-for="Gender" class="form-control" />*@
+                @*@Html.DropDownListFor(m=>m.Gender,Html.GetEnumSelectList(typeof(GenderEnum)), ((int)Model.Gender).ToString(), new {@class="form-control" })*@
+                @Html.DropDownListFor(m=>m.Gender,Html.GetEnumSelectList(typeof(GenderEnum)), "Select Gender", new {@class="form-control" })
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaritalSatus" class="control-label"></label>
+                @*<input asp-for="MaritalSatus" class="form-control" />*@
+                @*@Html.DropDownListFor(m=>m.MaritalSatus,Html.GetEnumSelectList(typeof(MaritalStatus)), ((int)Model.MaritalSatus).ToString(), new {@class="form-control" })*@
+                @Html.DropDownListFor(m=>m.MaritalSatus,Html.GetEnumSelectList(typeof(MaritalStatus)), "Select Marital Status", new {@class="form-control" })
+                <span asp-validation-for="MaritalSatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmergencyContactNo" class="control-label"></label>
+                <input asp-for="EmergencyContactNo" class="form-control" />
+                <span asp-validation-for="EmergencyContactNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skillset" class="control-label"></label>
+                <input asp-for="Skillset" class="form-control" />
+                <span asp-validation-for="Skillset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportingManagerId" class="control-label"></label>
+               @* <input asp-for="ReportingManagerId" class="form-control" />*@
+                @Html.DropDownListFor(m=>m.ReportingManagerId, new SelectList(ViewBag.managers, "ReportingManagerId", "Name"), "Select Leave Type",new { @class="form-control"})
+                 <span asp-validation-for="ReportingManagerId" class="text-danger"></span>
+            </div> 
+            @*<div class="form-group">
+                <label asp-for="OrgnizationId" class="control-label"></label>
+                <input asp-for="OrgnizationId" class="form-control" />
+                <span asp-validation-for="OrgnizationId" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @*<input asp-for="Status" class="form-control" />*@
+                @*@Html.DropDownListFor(m=>m.Status,Html.GetEnumSelectList(typeof(EmployeeStatusEnum)), EmployeeStatusEnum.ACTIVE.ToString(), new {@class="form-control" })
+                
+                 <span asp-validation-for="Status" class="text-danger"></span>*@
+            @*</div>*@
+            @*<div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedDate" class="control-label"></label>
+                <input asp-for="UpdatedDate" class="form-control" />
+                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="UpdatedBy" class="control-label"></label>
+                <input asp-for="UpdatedBy" class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

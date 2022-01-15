@@ -1,0 +1,93 @@
+﻿@model IEnumerable<LMSService.ViewModels.vwEmployee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create"><strong><i class="fas fa-plus"></i></i></strong> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportingManager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var item in Model)
+      
+         {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportingManager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink(" Edit", "Edit", new { id=item.Id },new { @class= "fas fa-pen-square" }) 
+               @* @Html.ActionLink(" Delete", "Delete", new { id=item.Id },new { @class= "far fa-trash-alt" })*@
+                @*<a href="@Url.Action("Delete", new { id = item.Id })" style="color :red;" onclick="return confirm ('Are you sure want to delete ?');">
+                                        <i class="far fa-trash-alt"> Delete</i>
+                                </a>*@
+            </td>
+        </tr>
+                }
+    </tbody>
+</table>

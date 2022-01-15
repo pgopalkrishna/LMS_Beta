@@ -108,7 +108,7 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
                     Dob=DateTime.UtcNow,
                     JoiningDate=DateTime.UtcNow,
                     Gender=1,
-                    emergencyContactNo="0000000000",
+                    EmergencyContactNo="0000000000",
                     OrgnizationId=1,
                     WorkLocationId=2,
                     MaritalSatus=1,
