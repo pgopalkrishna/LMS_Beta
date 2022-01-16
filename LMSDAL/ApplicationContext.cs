@@ -22,6 +22,7 @@ namespace LMSDAL
         public DbSet<LeaveType> LeaveTypes { get; set; }
         public DbSet<LeaveRule> LeaveRules { get; set; }
         public DbSet<LeaveApplication> LeaveApplications { get; set; }
+        public DbSet<LeaveApplicationDetail> LeaveApplicationDetails { get; set; }
         public DbSet<LeaveTransaction> LeaveTransactions { get; set; }
 
 

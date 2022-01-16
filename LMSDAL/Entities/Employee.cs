@@ -58,7 +58,8 @@ namespace Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        public virtual ICollection<Employee> employee { get; set; }
+        public virtual ICollection<LeaveType> LeaveTypes { get; set; }
+        //public virtual ICollection<Employee> employee { get; set; }
         [ForeignKey("DesignationId")]
         //[InverseProperty("DesignationInfo")]
         public virtual Designation Designation { get; set; }

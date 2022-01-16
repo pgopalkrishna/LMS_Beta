@@ -26,6 +26,7 @@ namespace Entities
         [ForeignKey("OrgnizationId")]
         //[InverseProperty("OrganizationInfo")]
         public virtual Organization Organization { get; set; }
-        public virtual ICollection<LeaveType> LeaveTypes { get; set; }
+        //public virtual ICollection<LeaveType> LeaveTypes { get; set; }
+        public virtual ICollection<Employee> employee { get; set; }
     }
 }

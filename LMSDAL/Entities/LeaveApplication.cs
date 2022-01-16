@@ -15,20 +15,20 @@ namespace Entities
         public int EmployeeId { get; set; }//FK
         [Required]
         public int LeaveTypeId { get; set; }//FK
-        [Required]
-        public DateTime StartDate { get; set; }
-        [Required]
-        public DateTime EndDate { get; set; }
-        public bool FirstDayHalf { get; set; }
-        public bool LastDayHalf { get; set; }
-        [Required]
-        public double NoOfLeaves { get; set; }
-        //public string RptManagerId { get; set; }//FK
-        public string LeaveReason { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        //[Required]
+        //public DateTime StartDate { get; set; }
+        //[Required]
+        //public DateTime EndDate { get; set; }
+        //public bool FirstDayHalf { get; set; }
+        //public bool LastDayHalf { get; set; }
+        //[Required]
+        //public double NoOfLeaves { get; set; }
+        ////public string RptManagerId { get; set; }//FK
+        //public string LeaveReason { get; set; }
+        //public DateTime CreatedDate { get; set; }
+        //public DateTime UpdatedDate { get; set; }
+        //public string CreatedBy { get; set; }
+        //public string UpdatedBy { get; set; }
         [ForeignKey("EmployeeId")]
         //[InverseProperty("EmployeeInfo")]
         public virtual Employee Employee { get; set; }

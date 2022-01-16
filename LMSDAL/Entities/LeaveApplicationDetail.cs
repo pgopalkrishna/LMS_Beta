@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMSDAL.Entities
+namespace Entities
 {
     public class LeaveApplicationDetail
     {
@@ -28,6 +28,7 @@ namespace LMSDAL.Entities
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        [ForeignKey("LeaveApplicationId")]
         public virtual LeaveApplication LeaveApplications { get; set; }
     }
 }
