@@ -16,8 +16,10 @@ namespace Entities
         [MaxLength(80)]
         public string Name { get; set; }
         [DefaultValue(true)]
+
         public bool IsActive { get; set; }
         [Required]
+        [Display(Name = "Organization")]
         public int OrgnizationId { get; set; }//FK
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

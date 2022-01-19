@@ -20,10 +20,13 @@ namespace LMSService.ViewModels
         [MaxLength(50)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "Email Id")]
         public string EmailId { get; set; }
         [Required]
         public string Designation { get; set; }
         [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
         public DateTime Dob { get; set; }
         [Required]
         [Display(Name = "Work Location")]

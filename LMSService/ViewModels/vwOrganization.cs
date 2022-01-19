@@ -13,14 +13,18 @@ namespace LMSService.ViewModels
         [Required]
         [MaxLength(100)]
         [MinLength(2,ErrorMessage ="Organization Name should be of atleast 2 characters ")]
+        [Display(Name = "Organization Name")]
         public string OrgnizationName { get; set; }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Contact Email")]
         public string ContactEmail { get; set; }
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Contact Number")]
         public string ContactNumber { get; set; }
         [Required]
+        [Display(Name = "Organization Address")]
         public string OrgAddress { get; set; }
     }
 }

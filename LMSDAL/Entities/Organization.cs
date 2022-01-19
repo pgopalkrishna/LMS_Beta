@@ -13,14 +13,18 @@ namespace Entities
         [Required]
         [MaxLength(100)]
         [MinLength(2)]
+        [Display(Name = "Organization Name")]
         public string OrgnizationName { get; set; }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Contact Email")]
         public string ContactEmail { get; set; }
         [Required]
         [MaxLength(20)]
+        [Display(Name = "Contact Number")]
         public string ContactNumber { get; set; }
         [Required]
+        [Display(Name = "Address")]
         public string OrgAddress { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

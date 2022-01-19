@@ -15,7 +15,9 @@ namespace LMSService.ViewModels
         public string Name { get; set; }
         public bool IsActive { get; set; }
         [Required]
+        [Display(Name = "Organization Id")]
         public int OrgnizationId { get; set; }
+        [Display(Name = "Organization Name")]
         public string OrgName { get; set; }
         
     }

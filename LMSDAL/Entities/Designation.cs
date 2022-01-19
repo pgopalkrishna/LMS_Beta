@@ -16,7 +16,9 @@ namespace Entities
         [MinLength(2)]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Organization Id")]
         public int OrgnizationId { get; set; }//FK
+        
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }

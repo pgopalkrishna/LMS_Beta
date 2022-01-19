@@ -68,7 +68,7 @@ namespace LMSWebApp.Controllers
                     {
                         //No Of leave calculation
                         var NOOfLeaves = 0.0;
-                        var daysdiff = leave.StartDate.Subtract(leave.EndDate.Date);
+                        var daysdiff = leave.EndDate.Subtract(leave.StartDate);
                         if (daysdiff.TotalDays > 0)
                         {
                             NOOfLeaves = daysdiff.TotalDays;

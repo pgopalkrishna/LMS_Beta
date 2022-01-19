@@ -12,13 +12,18 @@ namespace Entities
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Leave Type")]
         public int LeaveTypeId { get; set; }//FK
         [Required]
+        [Display(Name = "No Of Leaves")]
         public double NoOfLeaves { get; set; }
         [Required]
+        [Display(Name = "Leave Validity")]
         public int LeaveValidity { get; set; }//Enum
         public bool IsCarryForward { get; set; }
+        [Display(Name = "Carryforword Cap")]
         public int CarryForwardCap { get; set; }
+        [Display(Name = "Organization Id")]
         public int OrganizationId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

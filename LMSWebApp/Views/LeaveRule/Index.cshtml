@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create"><strong><i class="fas fa-plus"></i></i></strong> Create New</a>
 </p>
-<table class="table">
+<table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -61,4 +61,27 @@
         </tr>
 }
     </tbody>
+    <tfoot>
+         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfLeaves)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveValidity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCarryForward)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarryForwardCap)
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
