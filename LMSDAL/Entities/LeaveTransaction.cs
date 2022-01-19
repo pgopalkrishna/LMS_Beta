@@ -16,8 +16,8 @@ namespace Entities
         public int LeaveStatus { get; set; }//Enum
         public string Remark { get; set; }
         public string Description { get; set; }
-        public DateTime ApprovalDate { get; set; }
-        public DateTime RejectionDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
+        public DateTime? RejectionDate { get; set; }
         public string AprrovedBy { get; set; }
         public string RejectedBy { get; set; }
         public int OrgnanizationId { get; set; }

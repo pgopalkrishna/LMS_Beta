@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LMSWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class WorkLocationController : Controller
     {
         private readonly IWorkLocationRepository _repoWorkLocation;

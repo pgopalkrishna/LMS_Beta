@@ -1,5 +1,6 @@
 ﻿using Entities;
 using LMSService.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LMSWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class OrganizationController : Controller
     {
         private IOrganizationRepository _repoOrganization;

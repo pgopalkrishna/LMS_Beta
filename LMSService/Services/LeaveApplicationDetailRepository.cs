@@ -1,6 +1,7 @@
 ﻿using Entities;
 using LMSDAL;
 using LMSService.Interfaces;
+using LMSService.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,13 @@ using System.Threading.Tasks;
 
 namespace LMSService.Services
 {
-    class LeaveApplicationDetailRepository : Repository<LeaveApplicationDetail>, ILeaveApplicationDetailRepository
+    public class LeaveApplicationDetailRepository : Repository<LeaveApplicationDetail>, ILeaveApplicationDetailRepository
     {
-        public LeaveApplicationDetailRepository(ApplicationContext contex) : base(contex) { }
+       // private readonly ApplicationContext _context;
+        public LeaveApplicationDetailRepository(ApplicationContext contex) : base(contex)
+        {
+            //_context = contex;
+        }
+        
     }
 }

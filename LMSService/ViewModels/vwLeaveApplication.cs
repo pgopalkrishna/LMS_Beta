@@ -22,9 +22,11 @@ namespace LMSService.ViewModels
         public string LeaveTypeName { get; set; }
         [Required]
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
         public DateTime StartDate { get; set; }
         [Required]
         [Display(Name = "End Date")]
+        [DataType(DataType.Date, ErrorMessage = "Date only")]
         public DateTime EndDate { get; set; }
         [Display(Name = "First Day Half")]
         public bool FirstDayHalf { get; set; }
@@ -37,7 +39,7 @@ namespace LMSService.ViewModels
         [Display(Name = "Leave Reason")]
         public string LeaveReason { get; set; }
         
-        public int Status { get; set; }
+        public string Status { get; set; }
 
     }
 }

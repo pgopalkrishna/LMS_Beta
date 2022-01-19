@@ -39,9 +39,9 @@ namespace LMSWebApp
             services.AddTransient(typeof(IDesignationRepository), typeof(DesignationRepository));
             services.AddTransient(typeof(ILeaveRuleRepository), typeof(LeaveRuleRepository));
             services.AddTransient(typeof(IEmployeeRepository), typeof(EmployeeRepository));
-            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
-            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
-            //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
+            services.AddTransient(typeof(ILeaveApplicationRepository), typeof(LeaveApplicationRepository));
+            services.AddTransient(typeof(ILeaveApplicationDetailRepository), typeof(LeaveApplicationDetailRepository));
+            services.AddTransient(typeof(ILeaveTransactionRepository), typeof(LeaveTransactionRepository));
             //services.AddTransient(typeof(IOrganizationRepository), typeof(OrganizationRepository));
 
             services.AddControllersWithViews();

@@ -2,6 +2,7 @@
 using LMSService.Enums;
 using LMSService.Interfaces;
 using LMSService.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace LMSWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LeaveRuleController : Controller
     {
         private readonly ILeaveRuleRepository _repoleaveRule;

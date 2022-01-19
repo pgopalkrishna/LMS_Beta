@@ -21,6 +21,7 @@ namespace LMSWebApp.Areas.Identity
                         context.Configuration.GetConnectionString("LMSIdentityContextConnection")));
 
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<LMSIdentityContext>();
             });
         }

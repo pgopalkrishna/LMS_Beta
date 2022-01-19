@@ -2,6 +2,7 @@
 using LMSService.Enums;
 using LMSService.Interfaces;
 using LMSWebApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace LMSWebApp.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _repoEmployee;
@@ -49,9 +51,9 @@ namespace LMSWebApp.Controllers
         public ActionResult Create()
         {
             ViewBag.designations = _repoDesignation.GetList().Result.ToList().Select(s => new { DesignationId = s.Id, Name = s.Name }).ToList();
-            ViewBag.workLocations =  _repoWorkLocation.GetList().Result.ToList().Select(s => new { WorkLocationId = s.Id, Name = s.Name }).ToList();
-            var mgrs=  _repoEmployee.GetManagersList().Result.ToList().Select(s => new { ReportingManagerId = s.Id, Name =( s.FirstName+" "+s.LastName) }).ToList();
-            if (mgrs.Count()==0)
+            ViewBag.workLocations = _repoWorkLocation.GetList().Result.ToList().Select(s => new { WorkLocationId = s.Id, Name = s.Name }).ToList();
+            var mgrs = _repoEmployee.GetManagersList().Result.ToList().Select(s => new { ReportingManagerId = s.Id, Name = (s.FirstName + " " + s.LastName) }).ToList();
+            if (mgrs.Count() == 0)
             {
                 mgrs.Add(new { ReportingManagerId = 0, Name = "Not Assigned" });
             }
@@ -91,6 +93,7 @@ namespace LMSWebApp.Controllers
                     }
                     else
                     {
+                        //write code to delete employee
                         ModelState.AddModelError("error", "Something went wrong.");
                         return View(employee);
                     }
@@ -107,16 +110,40 @@ namespace LMSWebApp.Controllers
                         var count = await _repoEmployee.SaveChanges();
                         if (count <= 0)
                         {
+                            //write code to delete employee
                             ModelState.AddModelError("error", "Something went wrong.");
                             return View(employee);
                         }
+                        var resultUserRole = await _userManager.AddToRoleAsync(user, "User");
+                        //code to set mgr role
+                        if (employee.ReportingManagerId > 0)
+                        {
+                            var MgrUserId = _repoEmployee.GetById(employee.ReportingManagerId).Result.UserId;
+                            var MgrLoginUser = _userManager.FindByIdAsync(MgrUserId).Result;
+                            var HasMgrRole = _userManager.IsInRoleAsync(MgrLoginUser, "ReportingMgr").Result;
+                            if (!HasMgrRole)
+                            {
+                                var resultRoles = await _userManager.AddToRoleAsync(MgrLoginUser, "ReportingMgr");
+                            }
+                        }
+
                     }
-                    
+
                 }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.InnerException.Message);
+                ViewBag.designations = _repoDesignation.GetList().Result.ToList().Select(s => new { DesignationId = s.Id, Name = s.Name }).ToList();
+                ViewBag.workLocations = _repoWorkLocation.GetList().Result.ToList().Select(s => new { WorkLocationId = s.Id, Name = s.Name }).ToList();
+                var mgrs = _repoEmployee.GetManagersList().Result.ToList().Select(s => new { ReportingManagerId = s.Id, Name = (s.FirstName + " " + s.LastName) }).ToList();
+                if (mgrs.Count == 0)
+                {
+                    mgrs.Add(new { ReportingManagerId = 0, Name = "Not Assigned" });
+                }
+                ViewBag.managers = mgrs;
                 ModelState.AddModelError("error", "Something went wrong.");
                 return View(employee);
             }
@@ -140,7 +167,8 @@ namespace LMSWebApp.Controllers
                 ViewBag.managers = mgrs;
                 return View(employee);
             }
-            else {
+            else
+            {
                 return NotFound();
             }
             //return View();
@@ -182,6 +210,15 @@ namespace LMSWebApp.Controllers
                             user.LockoutEnabled = true;
                         }
                         var result = await _userManager.UpdateAsync(user);
+                        //code to set mgr role
+                        var MgrUserId = _repoEmployee.GetById(employee.ReportingManagerId).Result.UserId;
+                        var MgrLoginUser = _userManager.FindByIdAsync(MgrUserId).Result;
+                        var HasMgrRole = _userManager.IsInRoleAsync(MgrLoginUser, "ReportingMgr").Result;
+                        if (!HasMgrRole)
+                        {
+                            var resultRoles = await _userManager.AddToRoleAsync(MgrLoginUser, "ReportingMgr");
+                        }
+
                         if (result.Succeeded)
                         {
                             _logger.LogInformation("login user updated successfully.");
@@ -191,11 +228,12 @@ namespace LMSWebApp.Controllers
                             _logger.LogInformation(result.Errors.Select(err => new { msg = err.Code + " : " + err.Description }).FirstOrDefault().msg);
                         }
                     }
-                    else {
+                    else
+                    {
                         ModelState.AddModelError("error", "Something went wrong.");
                         return View(employee);
                     }
-                    
+
                 }
                 ViewBag.designations = _repoDesignation.GetList().Result.ToList().Select(s => new { DesignationId = s.Id, Name = s.Name }).ToList();
                 ViewBag.workLocations = _repoWorkLocation.GetList().Result.ToList().Select(s => new { WorkLocationId = s.Id, Name = s.Name }).ToList();
@@ -209,6 +247,9 @@ namespace LMSWebApp.Controllers
             }
             catch
             {
+                ViewBag.designations = _repoDesignation.GetList().Result.ToList().Select(s => new { DesignationId = s.Id, Name = s.Name }).ToList();
+                ViewBag.workLocations = _repoWorkLocation.GetList().Result.ToList().Select(s => new { WorkLocationId = s.Id, Name = s.Name }).ToList();
+                var mgrs = _repoEmployee.GetManagersList().Result.ToList().Select(s => new { ReportingManagerId = s.Id, Name = (s.FirstName + " " + s.LastName) }).ToList();
                 return View();
             }
         }

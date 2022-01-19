@@ -24,7 +24,5 @@ namespace LMSDAL
         public DbSet<LeaveApplication> LeaveApplications { get; set; }
         public DbSet<LeaveApplicationDetail> LeaveApplicationDetails { get; set; }
         public DbSet<LeaveTransaction> LeaveTransactions { get; set; }
-
-
     }
 }

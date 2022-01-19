@@ -1,0 +1,94 @@
+﻿@model IEnumerable<LMSService.ViewModels.vwLeaveApplication>
+@using LMSService.Enums;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+@if((bool)ViewBag.HasReportingMgr)
+{
+    <a asp-action="Create">Apply</a>
+}
+else
+{
+<a asp-action="Create" hidden>Apply</a>
+<strong class="">You are not allowed to apply for a leave.Please contact Admin to assign you reporting Manager </strong>
+}
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstDayHalf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDayHalf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfLeaves)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveReason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstDayHalf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDayHalf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfLeaves)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveReason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

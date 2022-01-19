@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LMSWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class DesignationController : Controller
     {
         private readonly IDesignationRepository _repoDesignation;

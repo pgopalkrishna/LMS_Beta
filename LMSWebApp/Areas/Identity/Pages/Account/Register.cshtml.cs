@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using LMSService.Interfaces;
 using Entities;
+using LMSService.Enums;
 
 namespace LMSWebApp.Areas.Identity.Pages.Account
 {
@@ -95,6 +96,7 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                var resultRoles = await _userManager.AddToRolesAsync(user, new List<string> { "User","Admin" });
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -104,17 +106,21 @@ namespace LMSWebApp.Areas.Identity.Pages.Account
                     UserId=user.Id,
                     FirstName=Input.FirstName,
                     LastName=Input.LastName,
-                    DesignationId=6,
-                    Dob=DateTime.UtcNow,
+                    //DesignationId=0,// 
+                        DesignationId=6,
+                        Dob =DateTime.UtcNow,
                     JoiningDate=DateTime.UtcNow,
                     Gender=1,
                     EmergencyContactNo="0000000000",
                     OrgnizationId=1,
-                    WorkLocationId=2,
-                    MaritalSatus=1,
-
+                       // OrgnizationId = 0,
+                       // WorkLocationId =0,
+                        WorkLocationId =2,
+                        MaritalSatus =1,
+                    Status=(int)EmployeeStatusEnum.ACTIVE,
                     CreatedDate=DateTime.UtcNow,
-                    UpdatedDate=DateTime.UtcNow
+                    UpdatedDate=DateTime.UtcNow,
+                     EmailId=user.Email
                     
                     };
                     await _repoEpmloyee.Add(Emp);
