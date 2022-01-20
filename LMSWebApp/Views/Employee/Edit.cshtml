@@ -19,16 +19,6 @@
             @Html.HiddenFor(model=>model.UpdatedDate)
             @Html.HiddenFor(model=>model.CreatedBy)
             @Html.HiddenFor(model=>model.UpdatedBy)
-            @*<div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>*@
             <div class="form-group" >
                 <label asp-for="EmpCode" class="control-label"></label>
                 <input asp-for="EmpCode" class="form-control" readonly />
@@ -51,43 +41,36 @@
             </div>
             <div class="form-group">
                 <label asp-for="DesignationId" class="control-label"></label>
-                @*<input asp-for="DesignationId" class="form-control" />*@
                 @Html.DropDownListFor(m=>m.DesignationId, new SelectList(ViewBag.designations, "DesignationId", "Name"), "Select Leave Type",new { @class="form-control"})
                 <span asp-validation-for="DesignationId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Dob" class="control-label"></label>
-                @*<input asp-for="Dob" class="form-control" />*@
                 @Html.EditorFor(m=>m.Dob, new {htmlAttributes = new {@Value = @Model.Dob.ToString("dd-MM-yyyy"), @class = "form-control" } })
                 <span asp-validation-for="Dob" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="JoiningDate" class="control-label"></label>
-                @*<input asp-for="JoiningDate" class="form-control" />*@
                 @Html.EditorFor(m=>m.JoiningDate, new {htmlAttributes = new {@Value = @Model.JoiningDate.ToString("dd-MM-yyyy"), @class = "form-control" } })
                 <span asp-validation-for="JoiningDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastWorkingDate" class="control-label"></label>
-                @*<input asp-for="LastWorkingDate" class="form-control" />*@
                 @Html.EditorFor(m=>m.LastWorkingDate, new {htmlAttributes = new {@Value = @Model.LastWorkingDate.ToString("dd-MM-yyyy"), @class = "form-control" } })
                 <span asp-validation-for="LastWorkingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WorkLocationId" class="control-label"></label>
-                @*<input asp-for="WorkLocationId" class="form-control" />*@
                  @Html.DropDownListFor(m=>m.WorkLocationId, new SelectList(ViewBag.workLocations, "WorkLocationId", "Name"), "Select Leave Type",new { @class="form-control"})
                 <span asp-validation-for="WorkLocationId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
-                @*<input asp-for="Gender" class="form-control" />*@
                 @Html.DropDownListFor(m=>m.Gender,Html.GetEnumSelectList(typeof(GenderEnum)), "Select Gender", new {@class="form-control" })
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaritalSatus" class="control-label"></label>
-                @*<input asp-for="MaritalSatus" class="form-control" />*@
                  @Html.DropDownListFor(m=>m.MaritalSatus,Html.GetEnumSelectList(typeof(MaritalStatus)), "Select Marital Status", new {@class="form-control" })
                 <span asp-validation-for="MaritalSatus" class="text-danger"></span>
             </div>
@@ -108,40 +91,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="ReportingManagerId" class="control-label"></label>
-                @*<input asp-for="ReportingManagerId" class="form-control" />*@
                  @Html.DropDownListFor(m=>m.ReportingManagerId, new SelectList(ViewBag.managers, "ReportingManagerId", "Name"), Model.ReportingManagerId.ToString(),new { @class="form-control"})
                 <span asp-validation-for="ReportingManagerId" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="OrgnizationId" class="control-label"></label>
-                <input asp-for="OrgnizationId" class="form-control" />
-                <span asp-validation-for="OrgnizationId" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 @Html.DropDownListFor(m=>m.Status,Html.GetEnumSelectList(typeof(EmployeeStatusEnum)),((int)Model.Status).ToString(), new {@class="form-control" })
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedBy" class="control-label"></label>
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -32,11 +32,6 @@ namespace LMSWebApp.Controllers
             return View(await _repoleaveRule.GetLeaveRuleList());
         }
 
-        //// GET: LeaveRuleController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: LeaveRuleController/Create
         public async Task<ActionResult> Create()

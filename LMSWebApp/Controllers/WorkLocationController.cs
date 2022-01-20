@@ -27,11 +27,6 @@ namespace LMSWebApp.Controllers
             return View(await _repoWorkLocation.GetWorkLocationList());
         }
 
-        //// GET: WorkLocationController/Details/5
-        //public IActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: WorkLocationController/Create
         public IActionResult Create()

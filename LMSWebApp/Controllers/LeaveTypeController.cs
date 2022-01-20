@@ -28,11 +28,6 @@ namespace LMSWebApp.Controllers
             return View(await _repoLeaveType.GetLeaveTypeList());
         }
 
-        //// GET: LeaveTypeController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: LeaveTypeController/Create
         public ActionResult Create()

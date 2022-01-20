@@ -41,11 +41,6 @@ namespace LMSWebApp.Controllers
             return View(await _repoEmployee.GetvwEmployeeList());
         }
 
-        //// GET: EmployeeController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
         // GET: EmployeeController/Create
         public ActionResult Create()

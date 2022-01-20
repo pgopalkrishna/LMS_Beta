@@ -27,12 +27,6 @@ namespace LMSWebApp.Controllers
             return View(await _repoDesignation.GetDesignationList());
         }
 
-        //// GET: DesignationController/Details/5
-        //public IActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
         // GET: DesignationController/Create
         public IActionResult Create()
         {
